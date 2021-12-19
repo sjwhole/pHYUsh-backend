@@ -2,7 +2,6 @@ import express from "express";
 import {
   getFullSoonLecture,
   getLectureInfo,
-  getLimitLecture,
 } from "../utils/lecture";
 
 const router = express.Router();
