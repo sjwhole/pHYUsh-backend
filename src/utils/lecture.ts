@@ -1,5 +1,4 @@
 import axios from "axios";
-import e from "express";
 import client from "../client";
 
 export const getLectureInfo = async (lectureName: string) => {
@@ -91,10 +90,6 @@ export const updateLectureInfo = async () => {
       });
     }
   );
-};
-
-export const getLimitLecture = async () => {
-  return client.$queryRaw`SELECT * FROM "Lecture" WHERE "limitInwon" <= "currentInwon"`;
 };
 
 export const getFullSoonLecture = async () => {

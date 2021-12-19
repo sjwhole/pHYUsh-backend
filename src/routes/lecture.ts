@@ -2,7 +2,6 @@ import express from "express";
 import {
   getFullSoonLecture,
   getLectureInfo,
-  getLimitLecture,
 } from "../utils/lecture";
 
 const router = express.Router();
@@ -32,11 +31,6 @@ router.get("", async (req, res) => {
     }
   );
   res.json([lectures]);
-});
-
-router.get("/limits", async (req, res) => {
-  const limitLectures = await getLimitLecture();
-  res.json(limitLectures);
 });
 
 router.get("/soon", async (req, res) => {
