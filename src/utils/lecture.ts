@@ -92,10 +92,6 @@ export const updateLectureInfo = async () => {
   );
 };
 
-export const getLimitLecture = async () => {
-  return client.$queryRaw`SELECT * FROM "Lecture" WHERE "limitInwon" <= "currentInwon"`;
-};
-
 export const getFullSoonLecture = async () => {
   return client.$queryRaw`SELECT *
   FROM "Lecture"

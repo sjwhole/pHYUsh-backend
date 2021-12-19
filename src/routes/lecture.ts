@@ -34,11 +34,6 @@ router.get("", async (req, res) => {
   res.json([lectures]);
 });
 
-router.get("/limits", async (req, res) => {
-  const limitLectures = await getLimitLecture();
-  res.json(limitLectures);
-});
-
 router.get("/soon", async (req, res) => {
   const fullSoonLectures = await getFullSoonLecture();
   res.json(fullSoonLectures);
