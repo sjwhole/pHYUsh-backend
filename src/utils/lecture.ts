@@ -98,3 +98,13 @@ export const getFullSoonLecture = async () => {
   WHERE "limitInwon" > "currentInwon"
   ORDER BY "limitInwon" - "currentInwon"`;
 };
+
+export const searchLecture = async (name: string) => {
+  return client.lecture.findMany({
+    where: {
+      gwamokNm: {
+        contains: name,
+      },
+    },
+  });
+};
