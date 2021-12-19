@@ -1,5 +1,5 @@
 import express from "express";
-import LecutreRouter from "./routes/lectures";
+import LecutreRouter from "./routes/lecture";
 
 const app = express();
 const router = express.Router();
