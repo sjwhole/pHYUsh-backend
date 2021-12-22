@@ -1,11 +1,11 @@
 import express from "express";
-import LecutreRouter from "./routes/lecture";
+import LectureRouter from "./routes/lecture";
 import PushRouter from "./routes/push";
 
 const app = express();
 app.use(express.json());
 
-app.use("/lectures", LecutreRouter);
+app.use("/lectures", LectureRouter);
 app.use("/push", PushRouter);
 
 app.listen(3000, async () => {
