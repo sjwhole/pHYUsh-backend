@@ -14,7 +14,7 @@ router.get("", async (req, res) => {
   }
   const query = await getPushInfos(token);
 
-  res.json(query?.pushes);
+  res.json(query?.pushes.map((e) => e.Lecture));
 });
 
 router.post("", async (req, res) => {
