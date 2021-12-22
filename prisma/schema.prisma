@@ -28,6 +28,8 @@ model Push {
   lectureSuupNo String
   FCM           FCM     @relation(fields: [FCMId], references: [id])
   FCMId         String  @db.VarChar(255)
+
+  @@unique([lectureSuupNo, FCMId], name: "pushIdentifier")
 }
 
 model FCM {
