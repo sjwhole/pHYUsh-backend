@@ -19,4 +19,18 @@ model Lecture {
   suupTimes      String
   currentInwon   Int
   limitInwon     Int
+  pushes         Push[]
+}
+
+model Push {
+  id            Int     @id @default(autoincrement())
+  Lecture       Lecture @relation(fields: [lectureSuupNo], references: [suupNo])
+  lectureSuupNo String
+  FCM           FCM     @relation(fields: [FCMId], references: [id])
+  FCMId         String  @db.VarChar(255)
+}
+
+model FCM {
+  id     String @id @db.VarChar(255)
+  pushes Push[]
 }
