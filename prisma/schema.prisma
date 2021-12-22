@@ -26,13 +26,13 @@ model Push {
   id            Int     @id @default(autoincrement())
   Lecture       Lecture @relation(fields: [lectureSuupNo], references: [suupNo])
   lectureSuupNo String
-  FCM           FCM     @relation(fields: [FCMId], references: [id])
-  FCMId         String  @db.VarChar(255)
+  Token         Token   @relation(fields: [TokenId], references: [id])
+  TokenId       String  @db.VarChar(1024)
 
-  @@unique([lectureSuupNo, FCMId], name: "pushIdentifier")
+  @@unique([lectureSuupNo, TokenId], name: "pushIdentifier")
 }
 
-model FCM {
-  id     String @id @db.VarChar(255)
+model Token {
+  id     String @id @db.VarChar(1024)
   pushes Push[]
 }
