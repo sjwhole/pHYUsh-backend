@@ -7,7 +7,7 @@ router.get("", async (req, res) => {
   const search: string = req.query.search as string;
   let lectures = await searchLecture(search);
 
-  res.json([lectures]);
+  res.json(lectures);
 });
 
 router.get("/soon", async (req, res) => {
