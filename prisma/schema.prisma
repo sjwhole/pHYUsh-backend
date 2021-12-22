@@ -11,12 +11,12 @@ datasource db {
 }
 
 model Lecture {
-  suupNo         String  @id
-  haksuNo        String
-  gwamokNm       String
-  daepyoGangsaNm String?
+  suupNo         String  @id @db.VarChar(255)
+  haksuNo        String  @db.VarChar(255)
+  gwamokNm       String  @db.VarChar(255)
+  daepyoGangsaNm String? @db.VarChar(255)
   hakjeom        Int
-  suupTimes      String
+  suupTimes      String  @db.VarChar(255)
   currentInwon   Int
   limitInwon     Int
   pushes         Push[]
