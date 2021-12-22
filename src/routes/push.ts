@@ -4,7 +4,7 @@ import { createPush, getPushInfos } from "../utils/push";
 const router = express.Router();
 
 router.get("", async (req, res) => {
-  const token = req.query.token as string;
+  const token = req.headers.authorization?.replace("Bearer ", "");
   if (token === undefined) {
     res.status(400);
     res.json({
@@ -18,7 +18,8 @@ router.get("", async (req, res) => {
 });
 
 router.post("", async (req, res) => {
-  const { token, suupNo } = req.body;
+  const token = req.headers.authorization?.replace("Bearer ", "");
+  const suupNo = String(req.body.suupNo);
 
   if (token === undefined || suupNo === undefined) {
     res.status(400);
