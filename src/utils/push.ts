@@ -22,3 +22,19 @@ export const getPushInfos = async (token: string) => {
     },
   });
 };
+
+export const createPush = (token: string, suupNo: string) => {
+  return client.push.upsert({
+    where: {
+      pushIdentifier: {
+        FCMId: token,
+        lectureSuupNo: suupNo,
+      },
+    },
+    create: {
+      FCMId: token,
+      lectureSuupNo: suupNo,
+    },
+    update: {},
+  });
+};
