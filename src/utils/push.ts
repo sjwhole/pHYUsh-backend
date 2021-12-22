@@ -1,7 +1,7 @@
 import client from "../client";
 
 export const getPushInfos = async (token: string) => {
-  await client.fCM.upsert({
+  await client.token.upsert({
     where: { id: token },
     update: {},
     create: {
@@ -9,7 +9,7 @@ export const getPushInfos = async (token: string) => {
     },
   });
 
-  return client.fCM.findUnique({
+  return client.token.findUnique({
     where: {
       id: token,
     },
@@ -27,12 +27,12 @@ export const createPush = (token: string, suupNo: string) => {
   return client.push.upsert({
     where: {
       pushIdentifier: {
-        FCMId: token,
+        TokenId: token,
         lectureSuupNo: suupNo,
       },
     },
     create: {
-      FCMId: token,
+      TokenId: token,
       lectureSuupNo: suupNo,
     },
     update: {},
