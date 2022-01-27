@@ -1,9 +1,9 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { createPush, getPushInfos } from "../utils/push";
 
 const router = express.Router();
 
-router.get("", async (req, res) => {
+router.get("", async (req: Request, res: Response) => {
   const token = req.headers.authorization?.replace("Bearer ", "");
   if (token === undefined) {
     res.status(400);
@@ -17,7 +17,7 @@ router.get("", async (req, res) => {
   res.json(query?.pushes.map((e) => e.Lecture));
 });
 
-router.post("", async (req, res) => {
+router.post("", async (req: Request, res: Response) => {
   const token = req.headers.authorization?.replace("Bearer ", "");
   const suupNo = String(req.body.suupNo);
 
