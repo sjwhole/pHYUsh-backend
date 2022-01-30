@@ -23,7 +23,7 @@ export const getPushInfos = async (token: string) => {
   });
 };
 
-export const createPush = (token: string, suupNo: string) => {
+export const createPush = (token: string, suupNo: number) => {
   return client.push.upsert({
     where: {
       pushIdentifier: {

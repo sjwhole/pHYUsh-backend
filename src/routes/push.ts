@@ -19,7 +19,7 @@ router.get("", async (req: Request, res: Response) => {
 
 router.post("", async (req: Request, res: Response) => {
   const token = req.headers.authorization?.replace("Bearer ", "");
-  const suupNo = String(req.body.suupNo);
+  const suupNo = parseInt(req.body.suupNo);
 
   if (token === undefined || suupNo === undefined) {
     res.status(400);
