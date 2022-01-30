@@ -95,7 +95,7 @@ export const updateLectureInfo = async () => {
 export const getFullSoonLecture = async () => {
   return client.$queryRaw`SELECT *
   FROM "Lecture"
-  WHERE "limitInwon" > "currentInwon"
+  WHERE "limitInwon" - "currentInwon" BETWEEN 1 AND "limitInwon" / 10
   ORDER BY "limitInwon" - "currentInwon"`;
 };
 
