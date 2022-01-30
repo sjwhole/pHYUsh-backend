@@ -11,21 +11,23 @@ datasource db {
 }
 
 model Lecture {
-  suupNo         String  @id @db.VarChar(255)
+  suupNo         Int     @id
   haksuNo        String  @db.VarChar(255)
   gwamokNm       String  @db.VarChar(255)
   daepyoGangsaNm String? @db.VarChar(255)
   hakjeom        Int
-  suupTimes      String  @db.VarChar(255)
+  suupTimes      String? @db.VarChar(255)
   currentInwon   Int
   limitInwon     Int
+  isuGbCd        Int
+  isuGbNm        String
   pushes         Push[]
 }
 
 model Push {
   id            Int     @id @default(autoincrement())
   Lecture       Lecture @relation(fields: [lectureSuupNo], references: [suupNo])
-  lectureSuupNo String
+  lectureSuupNo Int
   Token         Token   @relation(fields: [TokenId], references: [id])
   TokenId       String  @db.VarChar(1024)
 
