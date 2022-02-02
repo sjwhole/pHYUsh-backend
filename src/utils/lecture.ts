@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ILecture } from "../../types/types";
 import client from "../client";
 
 export const getLectureInfo = async (lectureName: string = "") => {
@@ -40,9 +41,20 @@ export const getLectureInfo = async (lectureName: string = "") => {
 };
 
 export const updateLectureInfo = async () => {
-  const lectures = await getLectureInfo();
+  const lectures: ILecture[] = await getLectureInfo();
   let suupSets = new Set();
-  for (const lecture of lectures) {
+
+  const filteredLectures = lectures.filter((e: ILecture) => {
+    const suupNo = parseInt(e.suupNo);
+
+    if (suupSets.has(suupNo)) return false;
+
+    suupSets.add(suupNo);
+
+    return true;
+  });
+
+  filteredLectures.forEach(async (lecture: ILecture) => {
     const {
       haksuNo,
       suupNo: strSuupNo,
@@ -54,10 +66,8 @@ export const updateLectureInfo = async () => {
       isuGbCd: strGbCd,
       isuGbNm,
     } = lecture;
+
     const suupNo = parseInt(strSuupNo);
-
-    if (suupSets.has(suupNo)) continue;
-
     const inwonInfo = jehanInwon.split("/");
     const isuGbCd = parseInt(strGbCd);
     const currentInwon = parseInt(inwonInfo[0]);
@@ -91,9 +101,7 @@ export const updateLectureInfo = async () => {
         suupNo,
       },
     });
-    suupSets.add(suupNo);
-  }
-  return suupSets;
+  });
 };
 
 export const getFullSoonLecture = async () => {
