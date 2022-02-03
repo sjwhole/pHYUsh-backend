@@ -55,7 +55,7 @@ export const updateLectureInfo = async () => {
     return true;
   });
 
-  filteredLectures.forEach(async (lecture: ILecture) => {
+  filteredLectures.forEach((lecture: ILecture) => {
     const {
       haksuNo,
       suupNo: strSuupNo,
@@ -74,7 +74,7 @@ export const updateLectureInfo = async () => {
     const currentInwon = parseInt(inwonInfo[0]);
     const limitInwon = parseInt(inwonInfo[1]);
 
-    await client.lecture.upsert({
+    client.lecture.upsert({
       create: {
         suupNo,
         haksuNo,
@@ -105,14 +105,14 @@ export const updateLectureInfo = async () => {
   });
 };
 
-export const getFullSoonLecture = async () => {
+export const getFullSoonLecture = () => {
   return client.$queryRaw`SELECT *
   FROM "Lecture"
   WHERE "isuGbCd" = 711 AND "limitInwon" - "currentInwon" BETWEEN 1 AND "limitInwon" / 10
   ORDER BY "limitInwon" - "currentInwon"`;
 };
 
-export const searchLecture = async (name: string) => {
+export const searchLecture = (name: string) => {
   return client.lecture.findMany({
     where: {
       gwamokNm: {
@@ -124,5 +124,7 @@ export const searchLecture = async (name: string) => {
 
 // Update Lecture info every 1 minute
 schedule.scheduleJob("*/1 * * * *", () => {
+  console.log("updating...");
   updateLectureInfo();
+  console.log("ended");
 });
