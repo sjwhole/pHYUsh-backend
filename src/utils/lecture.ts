@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ILecture } from "../../types/types";
+import { ILecture } from "../types/types";
 import client from "../client";
 import schedule from "node-schedule";
 
