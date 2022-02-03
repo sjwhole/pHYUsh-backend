@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ILecture } from "../../types/types";
 import client from "../client";
+import schedule from "node-schedule";
 
 export const getLectureInfo = async (lectureName: string = "") => {
   let response = await axios.post(
@@ -120,3 +121,8 @@ export const searchLecture = async (name: string) => {
     },
   });
 };
+
+// Update Lecture info every 1 minute
+schedule.scheduleJob("*/1 * * * *", () => {
+  updateLectureInfo();
+});
